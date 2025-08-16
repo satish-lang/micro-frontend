@@ -16,7 +16,7 @@ module.exports = merge(common, {
       name: "container",
       filename: "remoteEntry.js",
       remotes: {
-        marketing: `marketing@${domain}/marketing/remoteEntry.js`,
+        marketing: `marketing@${domain}/marketing/latest/remoteEntry.js`,
       },
       exposes: {},
       shared: packageJson.dependencies,
