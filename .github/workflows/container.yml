@@ -40,5 +40,8 @@ jobs:
           echo "Access Key ID: $AWS_ACCESS_KEY_ID"
           echo "Secret Access Key: $AWS_SECRET_ACCESS_KEY"
 
+      - name: List S3 buckets
+        run: aws s3 ls
+
       - name: Sync build to S3
         run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest
