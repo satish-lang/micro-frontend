@@ -34,12 +34,6 @@ jobs:
       - name: Configure AWS CLI
         uses: shinyinc/action-aws-cli@v1.2
 
-      - run: |
-          echo "Bucket: $AWS_S3_BUCKET_NAME"
-          echo "Region: $AWS_DEFAULT_REGION"
-          echo "Access Key ID: $AWS_ACCESS_KEY_ID"
-          echo "Secret Access Key: $AWS_SECRET_ACCESS_KEY"
-
       - name: List S3 buckets
         run: aws s3 ls --region $AWS_DEFAULT_REGION
 
