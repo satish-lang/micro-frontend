@@ -34,8 +34,5 @@ jobs:
       - name: Configure AWS CLI
         uses: shinyinc/action-aws-cli@v1.2
 
-      - name: List S3 buckets
-        run: aws s3 ls --region $AWS_DEFAULT_REGION
-
       - name: Sync build to S3
         run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest
