@@ -19,7 +19,17 @@ module.exports = merge(common, {
         marketing: `marketing@${domain}/marketing/latest/remoteEntry.js`,
       },
       exposes: {},
-      shared: packageJson.dependencies,
+      shared: {
+        ...packageJson.dependencies,
+        react: {
+          singleton: true,
+          requiredVersion: packageJson.dependencies.react,
+        },
+        "react-dom": {
+          singleton: true,
+          requiredVersion: packageJson.dependencies["react-dom"],
+        },
+      },
     }),
   ],
 });

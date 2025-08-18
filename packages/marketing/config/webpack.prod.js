@@ -1,13 +1,10 @@
-const { merge } = require("webpack-merge");
+const merge = require("webpack-merge");
 const common = require("./webpack.common");
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-const packageJson = require("../package.json");
 
 module.exports = merge(common, {
   mode: "production",
   output: {
     filename: "[name].[contenthash].js",
-    publicPath: "/marketing/latest/",
   },
   plugins: [
     new ModuleFederationPlugin({
@@ -16,7 +13,17 @@ module.exports = merge(common, {
       exposes: {
         "./MarketingApp": "./src/bootstrap.js",
       },
-      shared: packageJson.dependencies,
+      shared: {
+        ...packageJson.dependencies,
+        react: {
+          singleton: true,
+          requiredVersion: packageJson.dependencies.react,
+        },
+        "react-dom": {
+          singleton: true,
+          requiredVersion: packageJson.dependencies["react-dom"],
+        },
+      },
     }),
   ],
 });
