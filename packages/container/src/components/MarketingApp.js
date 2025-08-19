@@ -7,6 +7,7 @@ export default function MarketingApp() {
   const history = useHistory();
 
   useEffect(() => {
+    console.log("MarketingApp mounted");
     const { onParentNavigate } = mount(ref.current, {
       onNavigate: ({ pathname: nextPathname }) => {
         const { pathname } = history.location;

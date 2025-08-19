@@ -7,6 +7,7 @@ export default function AuthApp() {
   const history = useHistory();
 
   useEffect(() => {
+    console.log("AuthApp mounted");
     const { onParentNavigate } = mount(ref.current, {
       onNavigate: ({ pathname: nextPathname }) => {
         const { pathname } = history.location;

@@ -1,6 +1,4 @@
-import React from "react";
-import MarketingApp from "./components/MarketingApp";
-import AuthApp from "./components/AuthApp";
+import React, { lazy, Suspense } from "react";
 import Header from "./components/Header";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import {
@@ -12,16 +10,25 @@ const generateClassName = createGenerateClassName({
   productionPrefix: "co",
 });
 
+const MarketingApp = lazy(() =>
+  import(/* webpackChunkName: "marketing-app" */ "./components/MarketingApp")
+);
+const AuthApp = lazy(() =>
+  import(/* webpackChunkName: "auth-app" */ "./components/AuthApp")
+);
+
 export default function App() {
   return (
     <StylesProvider generateClassName={generateClassName}>
       <BrowserRouter>
         <div>
           <Header />
-          <Switch>
-            <Route path="/auth" component={AuthApp} />
-            <Route path="/" component={MarketingApp} />
-          </Switch>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Switch>
+              <Route path="/auth" component={AuthApp} />
+              <Route path="/" component={MarketingApp} />
+            </Switch>
+          </Suspense>
         </div>
       </BrowserRouter>
     </StylesProvider>
