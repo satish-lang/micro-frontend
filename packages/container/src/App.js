@@ -5,6 +5,7 @@ import {
   StylesProvider,
   createGenerateClassName,
 } from "@material-ui/core/styles";
+import Progress from "./components/Progress";
 
 const generateClassName = createGenerateClassName({
   productionPrefix: "co",
@@ -23,7 +24,7 @@ export default function App() {
       <BrowserRouter>
         <div>
           <Header />
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Progress />}>
             <Switch>
               <Route path="/auth" component={AuthApp} />
               <Route path="/" component={MarketingApp} />
