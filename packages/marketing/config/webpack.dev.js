@@ -11,6 +11,9 @@ module.exports = merge(common, {
     port: 8081,
     historyApiFallback: true,
   },
+  output: {
+    publicPath: "http://localhost:8081/",
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./public/index.html",

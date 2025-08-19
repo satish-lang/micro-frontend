@@ -7,14 +7,14 @@ module.exports = merge(common, {
   mode: "production",
   output: {
     filename: "[name].[contenthash].js",
-    publicPath: "/marketing/latest/",
+    publicPath: "/auth/latest/",
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "marketing",
+      name: "auth",
       filename: "remoteEntry.js",
       exposes: {
-        "./MarketingApp": "./src/bootstrap.js",
+        "./AuthApp": "./src/bootstrap.js",
       },
       shared: {
         ...packageJson.dependencies,
