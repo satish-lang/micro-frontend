@@ -2,9 +2,19 @@ import { mount } from "auth/AuthApp";
 import React, { useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-export default function AuthApp() {
+export default function AuthApp({ onSignIn }) {
   const ref = useRef(null);
   const history = useHistory();
+
+  const onSignInHandler = () => {
+    onSignIn();
+    if (
+      history.location.pathname === "/auth/signin" ||
+      history.location.pathname === "/auth/signup"
+    ) {
+      history.push("/");
+    }
+  };
 
   useEffect(() => {
     console.log("AuthApp mounted");
@@ -16,6 +26,7 @@ export default function AuthApp() {
         }
       },
       initialPath: history.location.pathname,
+      onSignIn: onSignInHandler,
     });
     history.listen(onParentNavigate);
   }, []);
