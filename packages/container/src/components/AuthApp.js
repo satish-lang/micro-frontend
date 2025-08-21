@@ -12,7 +12,7 @@ export default function AuthApp({ onSignIn }) {
       history.location.pathname === "/auth/signin" ||
       history.location.pathname === "/auth/signup"
     ) {
-      history.push("/");
+      history.push("/dashboard");
     }
   };
 
